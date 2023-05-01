@@ -1,0 +1,4 @@
+name: Dialogue
+version: '${version}'
+main: me.chimkenu.dialogue.Dialogue
+api-version: 1.19
