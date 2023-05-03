@@ -2,3 +2,7 @@ name: Dialogue
 version: '${version}'
 main: me.chimkenu.dialogue.Dialogue
 api-version: 1.19
+commands:
+  dialogue:
+    description: Dialogues the dialogue
+    usage: /<command>
