@@ -47,6 +47,7 @@ public class DialogueCommand implements CommandExecutor {
         }
 
         scenes.get(index).play(player);
+        validDialogues.remove(uuid);
 
         return true;
     }
