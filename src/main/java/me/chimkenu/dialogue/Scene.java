@@ -1,6 +1,7 @@
 package me.chimkenu.dialogue;
 
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.List;
 
@@ -21,11 +22,11 @@ public class Scene {
         }
     }
 
-    public void play(Player player) {
+    public void play(Player player, JavaPlugin plugin) {
         DialogueNode current = head;
         int delay = 0;
         while (current != null) {
-            delay += current.play(player, delay);
+            delay += current.play(player, delay, plugin);
             current = current.next;
         }
     }
