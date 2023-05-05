@@ -31,7 +31,7 @@ public class DialogueNode {
      * @param player        the player that will see the dialogue
      * @param delay         time (in ticks) before the text plays
      * @param plugin        the reference to the plugin scheduling task
-     * @return              the number of ticks the text plays for
+     * @return              the list of scheduled BukkitTasks
      */
     public List<BukkitTask> play(Player player, int delay, JavaPlugin plugin) {
         List<BukkitTask> tasks = new ArrayList<>();
