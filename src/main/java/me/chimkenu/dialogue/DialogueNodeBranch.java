@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DialogueNodeBranch extends DialogueNode {
-    public DialogueNodeBranch(TextComponent text, int ticksPerChar, int ticksBeforeNext) {
-        super(text, ticksPerChar, ticksBeforeNext);
+    public DialogueNodeBranch(TextComponent text) {
+        super(text, 0, 0);
     }
 
     @Override
