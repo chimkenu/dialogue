@@ -12,11 +12,11 @@ import java.util.List;
 import java.util.UUID;
 
 public class DialogueCommand implements CommandExecutor {
-    private final HashMap<Player, Location> playersInDialogue;
+    private final Dialogue plugin;
     public final HashMap<UUID, List<Scene>> validDialogues;
 
-    public DialogueCommand(HashMap<Player, Location> playersInDialogue) {
-        this.playersInDialogue = playersInDialogue;
+    public DialogueCommand(Dialogue plugin) {
+        this.plugin = plugin;
         validDialogues = new HashMap<>();
     }
 
@@ -26,7 +26,7 @@ public class DialogueCommand implements CommandExecutor {
             return true;
         }
 
-        if (!playersInDialogue.containsKey(player)) {
+        if (!plugin.playersInDialogue.containsKey(player)) {
             return true;
         }
 
@@ -57,7 +57,7 @@ public class DialogueCommand implements CommandExecutor {
             return true;
         }
 
-        scenes.get(index).play(player);
+        scenes.get(index).play(player, plugin);
         validDialogues.remove(uuid);
 
         return true;
