@@ -18,11 +18,11 @@ public final class Dialogue extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new DialogueListener(this), this);
     }
 
-    public void removePlayer(Player player) {
+    public void removePlayer(Player player, String reason) {
         Scene scene = playersInDialogue.remove(player);
         if (scene == null) {
             return;
         }
-        scene.tasks.forEach(BukkitTask::cancel);
+        scene.cancel(player, reason);
     }
 }

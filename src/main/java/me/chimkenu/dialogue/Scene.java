@@ -1,5 +1,7 @@
 package me.chimkenu.dialogue;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -41,7 +43,8 @@ public class Scene {
         }
     }
 
-    public void cancel() {
-
+    public void cancel(Player player, String reason) {
+        tasks.forEach(BukkitTask::cancel);
+        player.sendMessage(Component.text(reason, NamedTextColor.RED));
     }
 }

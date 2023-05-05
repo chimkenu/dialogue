@@ -15,7 +15,7 @@ public class DialogueListener implements Listener {
 
     @EventHandler
     public void onQuit(PlayerQuitEvent e) {
-        plugin.removePlayer(e.getPlayer());
+        plugin.removePlayer(e.getPlayer(), "Player quit");
     }
 
     @EventHandler
@@ -27,7 +27,7 @@ public class DialogueListener implements Listener {
         }
 
         if (scene.origin.distanceSquared(player.getLocation()) > Math.pow(scene.radius, 2)) {
-            plugin.removePlayer(e.getPlayer());
+            plugin.removePlayer(e.getPlayer(), "Too far away to continue.");
         }
     }
 }
