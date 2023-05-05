@@ -21,6 +21,12 @@ public class DialogueNode {
         this.next = next;
     }
 
+    public DialogueNode(TextComponent text, int ticksPerChar) {
+        this.text = text;
+        this.ticksPerChar = ticksPerChar;
+        this.next = null;
+    }
+
     /**
      * @param player        the player that will see the dialogue
      * @param delay         time (in ticks) before the text plays
