@@ -40,4 +40,8 @@ public class Scene {
             current = current.next;
         }
     }
+
+    public void cancel() {
+
+    }
 }
