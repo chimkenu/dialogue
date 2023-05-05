@@ -3,16 +3,26 @@ package me.chimkenu.dialogue;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitTask;
 
 import java.util.HashMap;
+import java.util.Iterator;
 
 public final class Dialogue extends JavaPlugin {
-    public HashMap<Player, Location> playersInDialogue;
+    public HashMap<Player, Scene> playersInDialogue;
 
     @Override
     public void onEnable() {
         playersInDialogue = new HashMap<>();
-        getCommand("dialogue").setExecutor(new DialogueCommand(playersInDialogue));
-        getServer().getPluginManager().registerEvents(new DialogueListener(playersInDialogue), this);
+        getCommand("dialogue").setExecutor(new DialogueCommand(this));
+        getServer().getPluginManager().registerEvents(new DialogueListener(this), this);
+    }
+
+    public void removePlayer(Player player) {
+        Scene scene = playersInDialogue.remove(player);
+        if (scene == null) {
+            return;
+        }
+        scene.tasks.forEach(BukkitTask::cancel);
     }
 }
