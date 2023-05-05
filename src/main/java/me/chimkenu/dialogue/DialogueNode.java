@@ -13,17 +13,20 @@ import java.util.List;
 public class DialogueNode {
     private final TextComponent text;
     public final int ticksPerChar;
+    public final int ticksBeforeNext;
     public DialogueNode next;
 
-    public DialogueNode(TextComponent text, int ticksPerChar, DialogueNode next) {
+    public DialogueNode(TextComponent text, int ticksPerChar, int ticksBeforeNext, DialogueNode next) {
         this.text = text;
         this.ticksPerChar = ticksPerChar;
+        this.ticksBeforeNext = ticksBeforeNext;
         this.next = next;
     }
 
-    public DialogueNode(TextComponent text, int ticksPerChar) {
+    public DialogueNode(TextComponent text, int ticksPerChar, int ticksBeforeNext) {
         this.text = text;
         this.ticksPerChar = ticksPerChar;
+        this.ticksBeforeNext = ticksBeforeNext;
         this.next = null;
     }
 
@@ -51,6 +54,6 @@ public class DialogueNode {
     }
 
     public int getTotalTime() {
-        return 1 + (text.content().length() * ticksPerChar); // adds a 1 tick delay to avoid text collisions
+        return 1 + (text.content().length() * ticksPerChar) + ticksBeforeNext; // adds a 1 tick delay to avoid text collisions
     }
 }
