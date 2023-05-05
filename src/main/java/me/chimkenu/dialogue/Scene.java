@@ -37,7 +37,7 @@ public class Scene {
         DialogueNode current = head;
         int delay = 0;
         while (current != null) {
-            current.play(player, delay, plugin);
+            tasks.addAll(current.play(player, delay, plugin));
             delay += current.getTotalTime();
             current = current.next;
         }
