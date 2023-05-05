@@ -16,19 +16,19 @@ public class Scene {
     public final double radius;
     public final List<BukkitTask> tasks;
 
-    public Scene(List<DialogueNode> dialogueList, Location origin, double radius) {
-        head = dialogueList.get(0);
+    public Scene(DialogueNode[] dialogueList, Location origin, double radius) {
+        head = dialogueList[0];
         this.origin = origin;
         this.radius = radius;
         this.tasks = new ArrayList<>();
 
-        if (dialogueList.size() < 2) {
+        if (dialogueList.length < 2) {
             return;
         }
 
         DialogueNode current = head;
-        for (int i = 1; i < dialogueList.size(); i++) {
-            current.next = dialogueList.get(i);
+        for (int i = 1; i < dialogueList.length; i++) {
+            current.next = dialogueList[i];
             current = current.next;
         }
     }
