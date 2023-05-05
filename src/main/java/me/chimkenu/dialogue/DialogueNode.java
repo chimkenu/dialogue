@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DialogueNode {
-    private final TextComponent text;
+    public final TextComponent text;
     public final int ticksPerChar;
     public final int ticksBeforeNext;
     public DialogueNode next;
