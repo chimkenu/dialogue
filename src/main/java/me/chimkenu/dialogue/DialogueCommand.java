@@ -1,5 +1,6 @@
 package me.chimkenu.dialogue;
 
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -11,11 +12,21 @@ import java.util.List;
 import java.util.UUID;
 
 public class DialogueCommand implements CommandExecutor {
-    public static final HashMap<UUID, List<Scene>> validDialogues = new HashMap<>();
+    private final HashMap<Player, Location> playersInDialogue;
+    public final HashMap<UUID, List<Scene>> validDialogues;
+
+    public DialogueCommand(HashMap<Player, Location> playersInDialogue) {
+        this.playersInDialogue = playersInDialogue;
+        validDialogues = new HashMap<>();
+    }
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (!(sender instanceof Player player)) {
+            return true;
+        }
+
+        if (!playersInDialogue.containsKey(player)) {
             return true;
         }
 
