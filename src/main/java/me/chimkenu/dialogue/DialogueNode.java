@@ -16,13 +16,6 @@ public class DialogueNode {
     public final int ticksBeforeNext;
     public DialogueNode next;
 
-    public DialogueNode(TextComponent text, int ticksPerChar, int ticksBeforeNext, DialogueNode next) {
-        this.text = text;
-        this.ticksPerChar = ticksPerChar;
-        this.ticksBeforeNext = ticksBeforeNext;
-        this.next = next;
-    }
-
     public DialogueNode(TextComponent text, int ticksPerChar, int ticksBeforeNext) {
         this.text = text;
         this.ticksPerChar = ticksPerChar;
