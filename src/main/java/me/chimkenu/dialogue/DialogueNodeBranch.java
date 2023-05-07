@@ -14,7 +14,7 @@ import java.util.*;
 public class DialogueNodeBranch extends DialogueNode {
     public static HashSet<UUID> validUUIDs = new HashSet<>();
 
-    public DialogueNodeBranch(TextComponent[] texts, Scene[] choices, Location origin, double radius, JavaPlugin plugin) {
+    public DialogueNodeBranch(TextComponent[] texts, Scene[] choices, Location origin, double radius, Dialogue plugin) {
         super(collate(texts, choices, origin, radius, plugin), 0, 0);
     }
 
@@ -28,7 +28,7 @@ public class DialogueNodeBranch extends DialogueNode {
         }.runTaskLater(plugin, 1 + delay)));
     }
 
-    private static TextComponent collate(TextComponent[] texts, Scene[] choices, Location origin, double radius, JavaPlugin plugin) {
+    private static TextComponent collate(TextComponent[] texts, Scene[] choices, Location origin, double radius, Dialogue plugin) {
         if (texts.length != choices.length) {
             throw new InputMismatchException();
         }
@@ -48,12 +48,15 @@ public class DialogueNodeBranch extends DialogueNode {
                     return;
                 }
 
-                if (origin.distanceSquared(player.getLocation()) > Math.pow(radius, 2)) {
-                    validUUIDs.remove(uuid);
+                validUUIDs.remove(uuid);
+                if (!plugin.playersInDialogue.containsKey(player)) {
                     return;
                 }
 
-                validUUIDs.remove(uuid);
+                if (origin.distanceSquared(player.getLocation()) > Math.pow(radius, 2)) {
+                    return;
+                }
+
                 choices[I].play(player, plugin);
             }));
             collated = collated.append(texts[i]);
