@@ -45,7 +45,18 @@ public class DialogueNode {
             tasks.add(new BukkitRunnable() {
                 @Override
                 public void run() {
-                    player.sendMessage(Component.text(text.content().substring(0, temp)));
+                    for (int j = 0; j < 16; j++) {
+                        player.sendMessage(Component.text());
+                    }
+                    player.sendMessage(Component.text("====================================================="));
+                    for (int j = 0; j < 4; j++) {
+                        player.sendMessage(Component.text());
+                    }
+                    player.sendMessage(Component.text(text.content().substring(0, temp + 1)));
+                    for (int j = 0; j < 3; j++) {
+                        player.sendMessage(Component.text());
+                    }
+                    player.sendMessage(Component.text("====================================================="));
                 }
             }.runTaskLater(plugin, delay + totalTime));
             totalTime += ticksPerChar;

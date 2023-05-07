@@ -23,7 +23,18 @@ public class DialogueNodeBranch extends DialogueNode {
         return new ArrayList<>(List.of(new BukkitRunnable() {
             @Override
             public void run() {
+                for (int j = 0; j < 16; j++) {
+                    player.sendMessage(Component.text());
+                }
+                player.sendMessage(Component.text("====================================================="));
+                for (int j = 0; j < 3; j++) {
+                    player.sendMessage(Component.text());
+                }
                 player.sendMessage(text);
+                for (int j = 0; j < 1; j++) {
+                    player.sendMessage(Component.text());
+                }
+                player.sendMessage(Component.text("====================================================="));
             }
         }.runTaskLater(plugin, 1 + delay)));
     }
@@ -59,7 +70,7 @@ public class DialogueNodeBranch extends DialogueNode {
 
                 choices[I].play(player, plugin);
             }));
-            collated = collated.append(texts[i]);
+            collated = collated.append(texts[i]).append(Component.text("\n"));
         }
         return collated;
     }
