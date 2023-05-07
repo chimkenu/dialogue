@@ -1,5 +1,6 @@
 package me.chimkenu.dialogue;
 
+import me.chimkenu.dialogue.dialogues.TestDialogue;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -13,11 +14,9 @@ import java.util.UUID;
 
 public class DialogueCommand implements CommandExecutor {
     private final Dialogue plugin;
-    public final HashMap<UUID, List<Scene>> validDialogues;
 
     public DialogueCommand(Dialogue plugin) {
         this.plugin = plugin;
-        validDialogues = new HashMap<>();
     }
 
     @Override
@@ -26,39 +25,13 @@ public class DialogueCommand implements CommandExecutor {
             return true;
         }
 
-        if (!plugin.playersInDialogue.containsKey(player)) {
+        if (plugin.playersInDialogue.containsKey(player)) {
             return true;
         }
 
-        if (args.length != 2) {
-            return true;
-        }
-
-        UUID uuid;
-        try {
-            uuid = UUID.fromString(args[0]);
-        } catch (IllegalArgumentException ignored) {
-            return true;
-        }
-
-        List<Scene> scenes = validDialogues.get(uuid);
-        if (scenes == null) {
-            return true;
-        }
-
-        int index;
-        try {
-            index = Integer.parseInt(args[1]);
-        } catch (NumberFormatException ignored) {
-            return true;
-        }
-
-        if (index < 0 || index >= scenes.size()) {
-            return true;
-        }
-
-        scenes.get(index).play(player, plugin);
-        validDialogues.remove(uuid);
+        Scene scene = TestDialogue.SCENE_1.getScene(player, plugin);
+        plugin.playersInDialogue.put(player, scene);
+        scene.play(player, plugin);
 
         return true;
     }
